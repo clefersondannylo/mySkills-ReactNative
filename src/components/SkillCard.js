@@ -1,0 +1,24 @@
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
+
+export function SkillCard() {
+  return (
+    <TouchableOpacity style={styles.wrapperSkills} key="1">
+      <Text style={styles.textSkills}> Skill</Text>
+    </TouchableOpacity>
+  );
+}
+const styles = StyleSheet.create({
+  wrapperSkills: {
+    backgroundColor: "#1f1e25",
+    padding: 10,
+    borderRadius: 50,
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  textSkills: {
+    color: "#fff",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+});
