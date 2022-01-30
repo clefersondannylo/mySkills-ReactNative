@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, Platform, TextInput, StyleSheet } from "react-native";
-import { ButtonSkill } from "../components/Button";
+import {
+  View,
+  Text,
+  Platform,
+  TextInput,
+  StyleSheet,
+  FlatList,
+} from "react-native";
+
+import { ButtonSkill } from "../components/ButtonSkill";
 import { SkillCard } from "../components/SkillCard";
 
 export function Home() {
@@ -20,11 +28,15 @@ export function Home() {
         placeholder="New skill"
         onChangeText={setNewSkill}
       />
-      <ButtonSkill />
+      <ButtonSkill onPress={handleAddNewSkill} />
+
       <Text style={[styles.title, { marginTop: 20 }]}>My skills</Text>
-      {mySkills.map((skill) => (
-        <SkillCard />
-      ))}
+
+      <FlatList
+        data={mySkills}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => <SkillCard skill={item} />}
+      />
     </View>
   );
 }
@@ -47,27 +59,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     padding: Platform.OS === "ios" ? 15 : 10,
     marginTop: 20,
-  },
-  button: {
-    backgroundColor: "#A370f7",
-    padding: 10,
-    borderRadius: 7,
-    marginTop: 20,
-    alignItems: "center",
-  },
-  buttonText: {
-    fontWeight: "bold",
-  },
-  wrapperSkills: {
-    backgroundColor: "#1f1e25",
-    padding: 10,
-    borderRadius: 50,
-    alignItems: "center",
-    marginVertical: 10,
-  },
-  textSkills: {
-    color: "#fff",
-    fontSize: 22,
-    fontWeight: "bold",
   },
 });
